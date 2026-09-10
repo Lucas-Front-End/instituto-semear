@@ -11,15 +11,17 @@
 
 <body>
 
+  <a class="skip-link" href="#app">Pular para o conteúdo</a>
+
   <header>
 
     <p class="marca"><a href="#/inicio">Instituto Semear</a></p>
 
     <input type="checkbox" id="menu-check" class="menu-check" hidden>
-    <label for="menu-check" class="menu-abrir"><span aria-hidden="true">&#9776;</span><span class="sr-only">Abrir e fechar menu</span></label>
+    <label for="menu-check" class="menu-abrir" role="button" aria-expanded="false" aria-controls="menu-lista"><span aria-hidden="true">&#9776;</span><span class="sr-only">Abrir e fechar menu</span></label>
 
     <nav aria-label="Menu principal">
-      <ul>
+      <ul id="menu-lista">
         <li><a href="#/inicio" data-rota="/inicio">Início</a></li>
         <li class="tem-submenu">
           <a href="#/projetos" data-rota="/projetos">Projetos</a>
@@ -35,7 +37,7 @@
 
   </header>
 
-  <main id="app" aria-live="polite"></main>
+  <main id="app" tabindex="-1"></main>
 
   <footer>
 

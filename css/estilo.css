@@ -113,6 +113,14 @@ li {
   outline-offset: 2px;
 }
 
+/* Alvos de foco por programacao (troca de rota) nao sao controles: sem contorno */
+#app:focus,
+#app:focus-visible,
+#app [tabindex="-1"]:focus,
+#app [tabindex="-1"]:focus-visible {
+  outline: none;
+}
+
 .sr-only {
   position: absolute;
   width: 1px;
@@ -123,6 +131,27 @@ li {
   clip: rect(0, 0, 0, 0);
   white-space: nowrap;
   border: 0;
+}
+
+.skip-link {
+  position: fixed;
+  top: 0;
+  left: var(--espaco-3);
+  z-index: 200;
+  padding: var(--espaco-2) var(--espaco-4);
+  background-color: var(--cor-primaria-escura);
+  color: #ffffff;
+  font-weight: var(--peso-medio);
+  text-decoration: none;
+  border-radius: 0 0 var(--raio-sm) var(--raio-sm);
+  transform: translateY(-120%);
+  transition: transform var(--transicao);
+}
+
+.skip-link:focus,
+.skip-link:focus-visible {
+  transform: translateY(0);
+  color: #ffffff;
 }
 
 header {
@@ -594,12 +623,13 @@ button:disabled:hover {
   background-color: rgba(26, 46, 34, 0.55);
   opacity: 0;
   visibility: hidden;
-  transition: opacity var(--transicao), visibility var(--transicao);
+  transition: opacity var(--transicao), visibility 0s linear 150ms;
 }
 
 .modal.aberto {
   opacity: 1;
   visibility: visible;
+  transition: opacity var(--transicao), visibility 0s linear 0s;
 }
 
 .modal__caixa {
@@ -763,5 +793,135 @@ footer address {
 
   main {
     gap: var(--espaco-5);
+  }
+}
+
+/* Respeita quem pediu menos movimento no sistema */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .botao:hover,
+  .botao:focus,
+  .cartoes article:hover,
+  button[type="submit"]:hover,
+  button[type="submit"]:focus {
+    transform: none;
+  }
+}
+
+/* Modo escuro do sistema, mantendo contraste AA */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --cor-primaria-clara: #1b2c24;
+    --cor-secundaria-clara: #2b1d12;
+    --cor-texto: #e8efea;
+    --cor-texto-suave: #b6c4bb;
+    --cor-fundo: #15211b;
+    --cor-fundo-alt: #0f1813;
+    --cor-borda: #35493e;
+    --sombra: 0 2px 8px rgba(0, 0, 0, 0.4);
+    --sombra-forte: 0 8px 24px rgba(0, 0, 0, 0.5);
+  }
+
+  h1,
+  h2,
+  h3,
+  legend,
+  .marca a {
+    color: #8fdcb5;
+  }
+
+  a {
+    color: #6cc79a;
+  }
+
+  a:hover,
+  a:focus {
+    color: #8fdcb5;
+  }
+
+  nav a {
+    color: var(--cor-texto);
+  }
+
+  nav a:hover,
+  nav a:focus {
+    background-color: var(--cor-primaria-clara);
+    color: #8fdcb5;
+  }
+
+  .estatisticas li,
+  .badge,
+  .badge--educacao {
+    color: #8fdcb5;
+  }
+
+  .badge--leitura {
+    background-color: #3a2413;
+    color: #f0b483;
+  }
+
+  .badge--formacao {
+    background-color: #1e2547;
+    color: #b9c4ff;
+  }
+
+  .alerta {
+    color: var(--cor-texto);
+  }
+
+  .alerta--info::before {
+    color: #8fdcb5;
+  }
+
+  .alerta--sucesso {
+    background-color: #142a20;
+  }
+
+  .alerta--sucesso::before {
+    color: #6fce9e;
+  }
+
+  .alerta--erro {
+    background-color: #2e1613;
+  }
+
+  .alerta--erro::before {
+    color: #f08a7e;
+  }
+}
+
+/* Alto contraste quando o sistema pede mais contraste */
+@media (prefers-contrast: more) {
+  :root {
+    --cor-texto-suave: var(--cor-texto);
+    --cor-borda: var(--cor-texto);
+  }
+
+  a {
+    text-decoration-thickness: 2px;
+  }
+
+  :focus-visible {
+    outline-width: 4px;
+  }
+
+  fieldset,
+  .cartoes article,
+  input:not([type="radio"]):not([type="checkbox"]),
+  select,
+  textarea {
+    border-width: 2px;
   }
 }

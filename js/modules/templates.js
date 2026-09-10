@@ -4,7 +4,7 @@ export function inicio() {
 
     <section>
       <h2>Quem somos</h2>
-      <img src="../img/equipe-semear.jpg"
+      <img src="../img/equipe-semear.webp"
            alt="Crianças sentadas ao redor de uma mesa lendo livros ilustrados em uma biblioteca comunitária."
            width="800" height="450">
       <p>O Instituto Semear é uma organização da sociedade civil sem fins
@@ -18,7 +18,7 @@ export function inicio() {
 
     <section>
       <h2>Nossa missão</h2>
-      <img src="../img/oficina-leitura.jpg"
+      <img src="../img/oficina-leitura.webp"
            alt="Três crianças de uniforme escolar sentadas no chão da biblioteca, folheando livros ilustrados."
            width="800" height="450">
       <p>Garantir que toda criança tenha acesso a livros, acompanhamento
@@ -56,7 +56,7 @@ const projetosDados = [
     titulo: "Biblioteca Itinerante",
     etiqueta: "Leitura",
     classe: "badge--leitura",
-    imagem: "biblioteca-itinerante.jpg",
+    imagem: "biblioteca-itinerante.webp",
     alt: "Ônibus amarelo adaptado como biblioteca itinerante, com prateleiras de livros visíveis pelas janelas.",
     texto: "Uma van adaptada leva acervo infantil e juvenil a praças e escolas que não têm biblioteca. São 12 paradas fixas por mês e um acervo circulante de 3.500 títulos.",
   },
@@ -64,7 +64,7 @@ const projetosDados = [
     titulo: "Reforço Escolar Semear",
     etiqueta: "Educação",
     classe: "badge--educacao",
-    imagem: "reforco-escolar.jpg",
+    imagem: "reforco-escolar.webp",
     alt: "Educadora aponta o caderno enquanto um menino escreve a lápis durante o reforço escolar.",
     texto: "Acompanhamento de português e matemática no contraturno escolar, em turmas de no máximo 15 alunos. Atende 180 crianças do 3º ao 9º ano.",
   },
@@ -72,7 +72,7 @@ const projetosDados = [
     titulo: "Jovem Leitor",
     etiqueta: "Formação",
     classe: "badge--formacao",
-    imagem: "jovem-leitor.jpg",
+    imagem: "jovem-leitor.webp",
     alt: "Dois adolescentes lendo o mesmo livro em pé, ao lado de uma estante de biblioteca.",
     texto: "Formação de mediadores de leitura entre adolescentes de 14 a 17 anos. Depois da formação, eles conduzem rodas de leitura para as crianças menores do próprio bairro.",
   },
