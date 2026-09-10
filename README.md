@@ -72,6 +72,18 @@ Pré-requisitos: Git e um servidor estático simples (o módulo `http` do Python
    http://localhost:8000/html/index.html
    ```
 
+## Acessibilidade
+
+O projeto segue as diretrizes WCAG 2.1 no nível AA:
+
+- Estrutura HTML semântica com marcos (`header`, `nav`, `main`, `footer`), um `h1` por página e hierarquia de títulos consistente.
+- Link "pular para o conteúdo" no topo, para quem navega por teclado saltar o menu.
+- Foco visível em todos os controles e gestão de foco na troca de rota (o foco vai para o título da nova página).
+- Modal com foco preso, fechamento por Esc e retorno do foco ao botão que o abriu.
+- Formulário com labels associados, campos agrupados em `fieldset` e mensagens de retorno anunciadas por região `aria-live`.
+- Contraste de cores conferido para o nível AA.
+- Suporte a preferências do sistema: modo escuro (`prefers-color-scheme`), mais contraste (`prefers-contrast`) e menos movimento (`prefers-reduced-motion`).
+
 ## Versionamento
 
 O projeto segue o fluxo GitFlow, com as branches `main` (versões estáveis) e `develop` (integração), e branches de funcionalidade (`feature/*`) para cada entrega.

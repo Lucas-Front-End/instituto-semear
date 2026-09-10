@@ -11,13 +11,49 @@ export function ativarProjetos() {
     : null;
 
   let temporizador;
+  let ultimoFoco = null;
+
+  function elementosFocaveis() {
+    return modal.querySelectorAll(
+      'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
+    );
+  }
+
+  function prenderFoco(evento) {
+    if (evento.key === "Escape") {
+      fecharModal();
+      return;
+    }
+    if (evento.key !== "Tab") return;
+
+    const focaveis = elementosFocaveis();
+    if (!focaveis.length) return;
+
+    const primeiro = focaveis[0];
+    const ultimo = focaveis[focaveis.length - 1];
+
+    if (evento.shiftKey && document.activeElement === primeiro) {
+      evento.preventDefault();
+      ultimo.focus();
+    } else if (!evento.shiftKey && document.activeElement === ultimo) {
+      evento.preventDefault();
+      primeiro.focus();
+    }
+  }
 
   function abrirModal() {
+    ultimoFoco = document.activeElement;
     modal.classList.add("aberto");
+    void modal.offsetHeight;
+    document.addEventListener("keydown", prenderFoco);
+    if (botaoFechar) botaoFechar.focus();
   }
 
   function fecharModal() {
+    if (!modal.classList.contains("aberto")) return;
     modal.classList.remove("aberto");
+    document.removeEventListener("keydown", prenderFoco);
+    if (ultimoFoco) ultimoFoco.focus();
   }
 
   function mostrarToast() {
@@ -43,9 +79,5 @@ export function ativarProjetos() {
 
   modal.addEventListener("click", (evento) => {
     if (evento.target === modal) fecharModal();
-  });
-
-  document.addEventListener("keydown", (evento) => {
-    if (evento.key === "Escape") fecharModal();
   });
 }
