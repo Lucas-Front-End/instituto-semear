@@ -2,6 +2,8 @@
 
 Site de uma ONG fictícia que atua com educação e leitura em comunidades de São Paulo. O projeto é uma Single Page Application feita com HTML, CSS e JavaScript puro, sem framework.
 
+**Site no ar:** https://lucas-front-end.github.io/instituto-semear/
+
 ## Sobre o projeto
 
 O Instituto Semear apresenta os projetos sociais da organização, explica como doar e como ser voluntário e oferece um formulário de cadastro que fica salvo no navegador. A navegação acontece sem recarregar a página: o conteúdo troca conforme o endereço no hash da URL.
@@ -53,13 +55,13 @@ Pré-requisitos: Git e um servidor estático simples (o módulo `http` do Python
 1. Clone o repositório:
 
    ```
-   git clone <url-do-repositorio>
+   git clone https://github.com/Lucas-Front-End/instituto-semear.git
    ```
 
 2. Entre na pasta do projeto:
 
    ```
-   cd projeto-ong-ep4
+   cd instituto-semear
    ```
 
 3. Suba um servidor estático na raiz. Com Python:
