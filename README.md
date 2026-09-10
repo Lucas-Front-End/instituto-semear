@@ -22,6 +22,7 @@ O Instituto Semear apresenta os projetos sociais da organização, explica como 
 - CSS3 com variáveis (design system), Grid e Flexbox
 - JavaScript ES6+ em módulos (import/export)
 - IMask para as máscaras dos campos
+- Vite para o build de produção (bundle e minificação)
 - Git e GitHub para o versionamento
 
 ## Estrutura de pastas
@@ -37,6 +38,9 @@ projeto-ong-ep4/
 │   ├── main.js           # ponto de entrada
 │   ├── modules/          # roteador, templates, validação, storage, interações, máscaras
 │   └── vendor/           # IMask
+├── scripts/              # passos de build (pós-build e otimização de imagens)
+├── vite.config.js        # configuração do build
+├── package.json
 └── .gitignore
 ```
 
@@ -71,6 +75,32 @@ Pré-requisitos: Git e um servidor estático simples (o módulo `http` do Python
    ```
    http://localhost:8000/html/index.html
    ```
+
+## Build de produção
+
+Para gerar a versão otimizada (bundle e minificação de CSS, JS e HTML):
+
+1. Instale as dependências (precisa do Node.js):
+
+   ```
+   npm install
+   ```
+
+2. Gere o build:
+
+   ```
+   npm run build
+   ```
+
+   Os arquivos finais ficam na pasta `dist/` (fora do versionamento). Um passo de pós-build copia o IMask e as imagens para lá.
+
+3. Teste o build localmente:
+
+   ```
+   npm run preview
+   ```
+
+O bundle é feito com Vite. As imagens foram comprimidas com mozjpeg pelo script `scripts/optimize-images.mjs`.
 
 ## Acessibilidade
 
