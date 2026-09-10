@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Instituto Semear</title>
+  <meta name="description" content="ONG que atua com educação e leitura em comunidades de São Paulo. Conheça nossos projetos e faça parte.">
+  <link rel="stylesheet" href="../css/estilo.css">
+</head>
+
+<body>
+
+  <header>
+
+    <p class="marca"><a href="#/inicio">Instituto Semear</a></p>
+
+    <input type="checkbox" id="menu-check" class="menu-check" hidden>
+    <label for="menu-check" class="menu-abrir"><span aria-hidden="true">&#9776;</span><span class="sr-only">Abrir e fechar menu</span></label>
+
+    <nav aria-label="Menu principal">
+      <ul>
+        <li><a href="#/inicio" data-rota="/inicio">Início</a></li>
+        <li class="tem-submenu">
+          <a href="#/projetos" data-rota="/projetos">Projetos</a>
+          <ul class="submenu">
+            <li><a href="#/projetos/projetos-andamento">Projetos em andamento</a></li>
+            <li><a href="#/projetos/como-doar">Como doar</a></li>
+            <li><a href="#/projetos/seja-voluntario">Seja voluntário</a></li>
+          </ul>
+        </li>
+        <li><a href="#/cadastro" data-rota="/cadastro">Cadastre-se</a></li>
+      </ul>
+    </nav>
+
+  </header>
+
+  <main id="app" aria-live="polite"></main>
+
+  <footer>
+
+    <h2>Fale com a gente</h2>
+
+    <address>
+      Instituto Semear<br>
+      Rua das Acácias, 245, Jardim Aurora<br>
+      São Paulo/SP, CEP 03574-000<br>
+      E-mail: <a href="mailto:contato@institutosemear.org.br">contato@institutosemear.org.br</a><br>
+      Telefone: <a href="tel:+551134567890">(11) 3456-7890</a>
+    </address>
+
+    <p><small>&copy; 2026 Instituto Semear. Todos os direitos reservados.</small></p>
+
+  </footer>
+
+  <script src="../js/vendor/imask.min.js"></script>
+  <script type="module" src="../js/main.js"></script>
+
+</body>
+
+</html>
