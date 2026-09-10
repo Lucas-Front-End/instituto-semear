@@ -1,12 +1,12 @@
 import sharp from "sharp";
-import { readdirSync, readFileSync, writeFileSync } from "node:fs";
+import { readdirSync, readFileSync, writeFileSync, unlinkSync } from "node:fs";
 import { join } from "node:path";
 
-// Comprime os JPEGs do projeto no lugar. As imagens sao exibidas com no maximo
-// 800px de largura (atributo width das tags), entao redimensionamos para isso
-// e reencodamos com mozjpeg. O SVG e vetorial e nao precisa.
-// Lemos o arquivo para a memoria antes de processar para nao manter o handle
-// aberto na hora de gravar (evita lock no Windows/OneDrive).
+// Converte as fotos JPEG do projeto para WebP, que comprime melhor com a mesma
+// qualidade aparente. Redimensiona para no maximo 800px (largura usada nas tags)
+// e remove o JPEG antigo. O SVG e vetorial e nao precisa. Lemos o arquivo para a
+// memoria antes de processar para nao manter o handle aberto (evita lock no
+// Windows/OneDrive).
 const dir = "img";
 const arquivos = readdirSync(dir).filter((f) => /\.jpe?g$/i.test(f));
 
@@ -16,20 +16,21 @@ let totalDepois = 0;
 for (const nome of arquivos) {
   const caminho = join(dir, nome);
   const entrada = readFileSync(caminho);
-  const antes = entrada.length;
   const buffer = await sharp(entrada)
     .resize({ width: 800, withoutEnlargement: true })
-    .jpeg({ quality: 78, mozjpeg: true })
+    .webp({ quality: 80 })
     .toBuffer();
-  writeFileSync(caminho, buffer);
-  totalAntes += antes;
+  const nomeWebp = nome.replace(/\.jpe?g$/i, ".webp");
+  writeFileSync(join(dir, nomeWebp), buffer);
+  unlinkSync(caminho);
+  totalAntes += entrada.length;
   totalDepois += buffer.length;
   console.log(
-    `${nome}: ${(antes / 1024).toFixed(1)}KB -> ${(buffer.length / 1024).toFixed(1)}KB`
+    `${nome} -> ${nomeWebp}: ${(entrada.length / 1024).toFixed(1)}KB -> ${(buffer.length / 1024).toFixed(1)}KB`
   );
 }
 
-const reducao = (1 - totalDepois / totalAntes) * 100;
+const reducao = totalAntes ? (1 - totalDepois / totalAntes) * 100 : 0;
 console.log(
   `TOTAL: ${(totalAntes / 1024).toFixed(1)}KB -> ${(totalDepois / 1024).toFixed(1)}KB (reducao de ${reducao.toFixed(0)}%)`
 );
