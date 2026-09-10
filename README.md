@@ -100,7 +100,7 @@ Para gerar a versão otimizada (bundle e minificação de CSS, JS e HTML):
    npm run preview
    ```
 
-O bundle é feito com Vite. As imagens foram comprimidas com mozjpeg pelo script `scripts/optimize-images.mjs`.
+O bundle é feito com Vite. As imagens foram convertidas para WebP pelo script `scripts/optimize-images.mjs`.
 
 ## Acessibilidade
 
